@@ -53,11 +53,11 @@ def get_temp(devicefile):
     # get the status from the end of line 1 
     status = lines[0][-4:-1]
 
-    # is the status is ok, get the temperature from line 2
+    # if the status is ok, get the temperature from line 2
     if status=="YES":
         print status
         tempstr= lines[1][-6:-1]
-        tempvalue=float(tempstr)/1000
+        tempvalue=float(tempstr)* 9.0 / 5.0 + 32.0
         print tempvalue
         return tempvalue
     else:
