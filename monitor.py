@@ -71,8 +71,10 @@ def get_temp(devicefile):
 def main():
 
     # enable kernel modules
-    os.system('sudo modprobe w1-gpio')
-    os.system('sudo modprobe w1-therm')
+    # only uncomment below if you aren't loading modules in /etc/modules
+    # otherwise you will have to add www-data to sudoers for full function
+  #  os.system('sudo modprobe w1-gpio')
+  #  os.system('sudo modprobe w1-therm')
 
     # search for a device file that starts with 28
     devicelist = glob.glob('/sys/bus/w1/devices/28*')
