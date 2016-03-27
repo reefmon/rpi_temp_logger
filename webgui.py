@@ -137,7 +137,7 @@ def show_stats(option):
     print "<h2>Maximum temperature</h2>"
     print rowstrmax
     print "<h2>Average temperature</h2>"
-    print "%.3f" % rowavg+"C"
+    print "%.3f" % rowavg+"F"
 
     print "<hr>"
 
