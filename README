@@ -22,8 +22,10 @@ After you have entered in those commands, exit the sqlite shell by entering in:
 
 Use these commands to place the db in the /var/www/ directory and to set permissions:
 
-$ sudo cp templog.db /var/www/
-$ sudo chown www-data:www-data /var/www/templog.db
+$ sudo mkdir /var/www/temperature/
+$ sudo chown www-data:www-data /var/www/temperature/
+$ sudo cp templog.db /var/www/temperature/
+$ sudo chown www-data:www-data /var/www/temperature/templog.db
 
 Place the monitor.py script file in /usr/lib/cgi-bin/ and apply proper permission once it been copied over:
 
