@@ -1,7 +1,53 @@
 Raspberry Pi Temperature Logger
 ===============================
 
-This repo contains code for a Raspberry Pi temperature logger which uses SQLite to store data read from a DS18B20 sensor.  You can see more details here:
-http://raspberrywebserver.com/cgiscripting/rpi-temperature-logger/building-an-sqlite-temperature-logger.html
+This repo contains code for a Raspberry Pi temperature logger which uses SQLite to store data read from a DS18B20 sensor.
+sqlite3 is required. Run this prior to running these scripts:
 
-In webgui.py, there are several lines that contain hardcoded dates so that you can use the script with the sample database provided.  There is an equivalent version of each of these lines that uses 'now' instead of a hardcoded timestamp.  If you want to view data you've collected yourself, you should uncomment the lines that use 'now', and comment out the lines that have a hardocded date. See webgui.py, lines 45, 117, 122, 127 and 148.
+sudo apt-get install sqlite3
+
+You should use sqlite to create a new templog.db file:
+
+sqlite3 templog.db
+
+In the sqlite shell, enter these commands:
+
+BEGIN;
+CREATE TABLE temps (timestamp DATETIME, temp NUMERIC);
+COMMIT;
+
+After you have entered in those commands, exit the sqlite shell by entering in:
+
+.quit
+
+Use these commands to place the db in the /var/www/ directory and to set permissions:
+
+$ sudo cp templog.db /var/www/
+$ sudo chown www-data:www-data /var/www/templog.db
+
+Place the monitor.py script file in /usr/lib/cgi-bin/ and apply proper permission once it been copied over:
+
+$ sudo chmod +x /usr/lib/cgi-bin/monitor.py 
+$ sudo chown www-data:www-data /usr/lib/cgi-bin/monitor.py 
+
+Set a cron job:
+
+$ sudo crontab -u www-data -e
+
+With the following paramters for database updates every 15 minutes:
+
+*/15 * * * * /usr/lib/cgi-bin/monitor.py
+
+This should get you started. Place the webgui.py file in the same /var/lib/cgi-bin directory. You may need to setup apache to allow for
+handling of cgi-bin .py files, which is unfortunately beyond the scaope of this README.
+
+
+
+
+
+
+
+
+
+
+
