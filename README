@@ -2,13 +2,21 @@ Raspberry Pi Temperature Logger
 ===============================
 
 This repo contains code for a Raspberry Pi temperature logger which uses SQLite to store data read from a DS18B20 sensor.
-sqlite3 is required. Run this prior to running these scripts:
+sqlite3 is required. Run these pre-req's prior to running the scripts in this repo:
 
-sudo apt-get install sqlite3
+You should edit /etc/modules as root on your raspberry pi and add the following two lines:
+
+wp-gpio
+wp-therm
+
+Optionally, you could add the 'wp-gpio pullup=1' on the first line (without single quotes) if required for your setup.
+Once that is setup, run:
+
+$ sudo apt-get install sqlite3
 
 You should use sqlite to create a new templog.db file:
 
-sqlite3 templog.db
+$ sqlite3 templog.db
 
 In the sqlite shell, enter these commands:
 
