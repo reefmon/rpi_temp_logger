@@ -57,7 +57,7 @@ def get_temp(devicefile):
     if status=="YES":
         print status
         tempstr= lines[1][-6:-1]
-        tempvalue=float(tempstr)* 9.0 / 5.0 + 32.0
+        tempvalue=float(tempstr) / 1000 * 9.0 / 5.0 + 32.0
         print tempvalue
         return tempvalue
     else:
