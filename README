@@ -20,7 +20,7 @@ After you have entered in those commands, exit the sqlite shell by entering in:
 
 .quit
 
-Use these commands to place the db in the /var/www/ directory and to set permissions:
+Use these commands to place the db in the /var/www/temperature/ directory and to set permissions:
 
 $ sudo mkdir /var/www/temperature/
 $ sudo chown www-data:www-data /var/www/temperature/
